@@ -2,22 +2,16 @@ import java.util.Scanner;
 
 public class Main {
 
-  public String solution(int n, int[] a, int[] b) {
+  public String solution(int n, String s) {
     String answer = "";
-
-    // 가위 1, 바위 2, 보3
+    // # -> 1, * -> 0
     for (int i = 0; i < n; i++) {
-      // A가 가위로 이기는 경우
-      if (a[i] - b[i] == -2) {
-        answer += "A";
-        // A가 바위, 보로 이기는 경우
-      } else if (a[i] - b[i] == 1) {
-        answer += "A";
-      } else if (a[i] == b[i]) {
-        answer += "D";
-      } else {
-        answer += "B";
-      }
+      String tmp = "";
+      tmp = s.substring(0, 7)
+          .replace('#', '1')
+          .replace('*', '0');
+      answer += (char) Integer.parseInt(tmp, 2);
+      s = s.substring(7);
     }
 
     return answer;
@@ -27,16 +21,7 @@ public class Main {
     Main main = new Main();
     Scanner scanner = new Scanner(System.in);
     int n = scanner.nextInt();
-    int[] a = new int[n];
-    int[] b = new int[n];
-    for (int i = 0; i < n; i++) {
-      a[i] = scanner.nextInt();
-    }
-    for (int i = 0; i < n; i++) {
-      b[i] = scanner.nextInt();
-    }
-    for (char x : main.solution(n,a,b).toCharArray()) {
-      System.out.println(x);
-    }
+    String s = scanner.next();
+    System.out.println(main.solution(n, s));
   }
 }
