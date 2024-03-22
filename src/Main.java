@@ -2,26 +2,30 @@ import java.util.Scanner;
 
 public class Main {
 
-  public String solution(int n, String s) {
-    String answer = "";
-    // # -> 1, * -> 0
+  // Q8. 부터~
+  public int solution(int n, int[] arr) {
+    int answer = 0;
+    int score = 1;
     for (int i = 0; i < n; i++) {
-      String tmp = "";
-      tmp = s.substring(0, 7)
-          .replace('#', '1')
-          .replace('*', '0');
-      answer += (char) Integer.parseInt(tmp, 2);
-      s = s.substring(7);
+      if (arr[i] == 1) {
+        answer += score;
+        score += 1;
+      } else {
+        score = 1;
+      }
     }
-
     return answer;
   }
+
 
   public static void main(String[] args) {
     Main main = new Main();
     Scanner scanner = new Scanner(System.in);
     int n = scanner.nextInt();
-    String s = scanner.next();
-    System.out.println(main.solution(n, s));
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = scanner.nextInt();
+    }
+    System.out.println(main.solution(n, arr));
   }
 }
